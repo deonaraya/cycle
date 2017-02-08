@@ -1,0 +1,9 @@
+.eclipse
+.idea
+.eclipse
+test-output/
+.idea/
+target/
+.settings
+.classpath
+Screenshots/
