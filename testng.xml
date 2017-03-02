@@ -2,6 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite" parallel="false">
   <test name="Test">
+  <parameter name="browser" value="${browser}"></parameter>
     <classes>
       <class name="com.deo.cycle.tests.CycleTests"/>
     </classes>

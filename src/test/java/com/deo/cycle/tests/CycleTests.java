@@ -8,6 +8,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -15,6 +16,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.relevantcodes.extentreports.ExtentReports;
@@ -32,9 +34,23 @@ public class CycleTests {
 		extent = new ExtentReports("filePath.html");
 	}
 	
+//	@BeforeMethod
+//	public void beforeMethod(){
+//		driver = new FirefoxDriver();
+//		driver.manage().window().maximize();
+//	}
+	
+	@Parameters("browser")
 	@BeforeMethod
-	public void beforeMethod(){
-		driver = new FirefoxDriver();
+	public void beforeMethod(String browser){
+		if (browser.equalsIgnoreCase("firefox"))
+            driver = new FirefoxDriver();
+        else if (browser.equalsIgnoreCase("chrome"))
+            driver = new ChromeDriver();
+        else {
+            throw new IllegalArgumentException("Invalid browser value!!");
+        }
+		
 		driver.manage().window().maximize();
 	}
 	
